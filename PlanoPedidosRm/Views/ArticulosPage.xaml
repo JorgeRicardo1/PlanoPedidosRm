@@ -7,10 +7,11 @@
         <viewModels:ArticulosViewModel/>
     </ContentPage.BindingContext>
     <CollectionView
+        x:Name="arti_list"
         ItemsSource="{Binding Articulos}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid Padding="10">
+                <StackLayout Padding="10">
                     <Frame CornerRadius="20"
                                HasShadow="True">
                         <StackLayout >
@@ -22,7 +23,12 @@
                                            Text="{Binding Nombre}"/>
                         </StackLayout>
                     </Frame>
-                </Grid>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=BindingContext.IrAGestionarPedidoscommand,
+                                                                    Source={x:Reference arti_list}}" 
+                                                                    CommandParameter="{Binding .}"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

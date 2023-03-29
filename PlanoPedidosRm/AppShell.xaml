@@ -91,12 +91,7 @@
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="Gestion Pedidos" Icon="icon_about.png">
-        <Tab Title="Info Cliente">
-            <ShellContent Route="IngresarCliente" ContentTemplate="{DataTemplate local:IngresarClientePage}" />
-        </Tab>
-        <Tab Title="Gestionar Pedido">
-            <ShellContent Route="GestionPedidos" ContentTemplate="{DataTemplate local:GestionPedidosPage}" />
-        </Tab>
+        <ShellContent Route="Home" ContentTemplate="{DataTemplate local:TabbedHomePage}" />
     </FlyoutItem>
     <FlyoutItem Title="Pedidos En Proceso" Icon="icon_about.png">
         <ShellContent Route="PedidosEnProceso" ContentTemplate="{DataTemplate local:PedidosEnProcesoPage}"/>

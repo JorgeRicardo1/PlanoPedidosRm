@@ -16,7 +16,7 @@ namespace PlanoPedidosRm.ViewModels
         }
         public void logearse()
         {
-            Shell.Current.GoToAsync("//IngresarCliente");
+            Shell.Current.GoToAsync("//Home");
         }
     }
 }
