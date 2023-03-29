@@ -10,6 +10,9 @@
         <Label Text="Welcome to GESTION DE PEDIDOS"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+        <Label Text="{Binding IdArticulo}" FontSize="Large"
+               VerticalOptions="CenterAndExpand" 
+               HorizontalOptions="CenterAndExpand"/>
         <Button Text="Seleccionar Articulo" Command="{Binding IrArticulosCommand}"/>
     </StackLayout>
 </ContentPage>

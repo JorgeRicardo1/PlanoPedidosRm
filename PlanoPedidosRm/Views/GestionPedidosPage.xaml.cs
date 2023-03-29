@@ -15,6 +15,6 @@ namespace PlanoPedidosRm.Views
         public GestionPedidosPage()
         {
             InitializeComponent();
-        }
+        } 
     }
 }

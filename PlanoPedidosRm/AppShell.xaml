@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:PlanoPedidosRm.Views"
+       xmlns:viewModel="clr-namespace:PlanoPedidosRm.ViewModels"
        Title="PlanoPedidosRm"
        x:Class="PlanoPedidosRm.AppShell">
 
@@ -13,6 +14,8 @@
 
     <Shell.Resources>
         <ResourceDictionary>
+            <viewModel:GestionPedidosViewModel x:Key="GestionPedidosViewModel"/>
+
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />

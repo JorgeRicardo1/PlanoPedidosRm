@@ -12,6 +12,7 @@ namespace PlanoPedidosRm
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(ArticulosPage), typeof(ArticulosPage));
+            Routing.RegisterRoute(nameof(GestionPedidosPage),typeof(GestionPedidosPage));
 
         }
 
