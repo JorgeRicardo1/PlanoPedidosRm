@@ -9,15 +9,35 @@ namespace PlanoPedidosRm.Services
 {
     public class ServicesArticulo
     {
-        public static async Task<ObservableRangeCollection<Articulo>> GetArticulos()
+        public static async Task<ObservableRangeCollection<ArticuloModel>> GetArticulos()
         {
-            ObservableRangeCollection<Articulo> articulos= new ObservableRangeCollection<Articulo>();
-
-            articulos.Add(new Articulo() { Id= 1, Nombre="Papa"});
-            articulos.Add(new Articulo() { Id = 2, Nombre = "Casa" });
-            articulos.Add(new Articulo() { Id = 3, Nombre = "Pera" });
+            ObservableRangeCollection<ArticuloModel> articulos = new ObservableRangeCollection<ArticuloModel>
+            {
+                new ArticuloModel() { Id = 1, Nombre = "Papa" },
+                new ArticuloModel() { Id = 2, Nombre = "Casa" },
+                new ArticuloModel() { Id = 3, Nombre = "Pera" }
+            };
 
             return articulos;
+        }
+
+        public static async Task<ArticuloModel> GetArticulo(string id)
+        {
+            ObservableRangeCollection<ArticuloModel> articulos = new ObservableRangeCollection<ArticuloModel>
+            {
+                new ArticuloModel() { Id = 1, Nombre = "Papa" },
+                new ArticuloModel() { Id = 2, Nombre = "Casa" },
+                new ArticuloModel() { Id = 3, Nombre = "Pera" }
+            };
+
+            foreach (var articulo in articulos)
+            {
+                if (articulo.Id == Int32.Parse(id))
+                {
+                    return articulo;
+                }
+            }
+            return null;
         }
     }
 }

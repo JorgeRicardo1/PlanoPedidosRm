@@ -15,7 +15,5 @@ namespace PlanoPedidosRm
             Routing.RegisterRoute(nameof(GestionPedidosPage),typeof(GestionPedidosPage));
 
         }
-
-
     }
 }

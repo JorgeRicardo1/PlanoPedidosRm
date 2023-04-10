@@ -13,6 +13,14 @@
         <Label Text="{Binding IdArticulo}" FontSize="Large"
                VerticalOptions="CenterAndExpand" 
                HorizontalOptions="CenterAndExpand"/>
-        <Button Text="Seleccionar Articulo" Command="{Binding IrArticulosCommand}"/>
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,*,*">
+            <Label Text="Nombre:" Grid.Column="0" Grid.Row="0"/>
+            <Label Text="{Binding ArticuloSeleccionado.Nombre}" Grid.Column="1" Grid.Row="0"/>
+            <Label Text="Id:" Grid.Column="0" Grid.Row="1"/>
+            <Label Text="{Binding ArticuloSeleccionado.Id}" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+        <Button Text="Seleccionar Articulo" Command="{Binding IrArticulosCommand}" IsVisible="{Binding IsVisibleBtnIr}"/>
+        <Button Text="Agregar Articulo" Command="{Binding AddArtiToTempCommand}" IsVisible="{Binding IsVisibleBtnAdd}"/>
     </StackLayout>
 </ContentPage>

@@ -13,13 +13,13 @@ namespace PlanoPedidosRm.ViewModels
 {
     public class ArticulosViewModel :BaseViewModel
     {
-        public ObservableCollection<Articulo> Articulos { get; set; }
-        public AsyncCommand<Articulo> IrAGestionarPedidoscommand { get; }
+        public ObservableCollection<ArticuloModel> Articulos { get; set; }
+        public AsyncCommand<ArticuloModel> IrAGestionarPedidoscommand { get; }
 
         public ArticulosViewModel() 
         {
-            Articulos = new ObservableCollection<Articulo>();
-            IrAGestionarPedidoscommand = new AsyncCommand<Articulo>(IrAGestionarPedido);
+            Articulos = new ObservableCollection<ArticuloModel>();
+            IrAGestionarPedidoscommand = new AsyncCommand<ArticuloModel>(IrAGestionarPedido);
             _ = obtenerArticulos();
             
         }
@@ -29,9 +29,9 @@ namespace PlanoPedidosRm.ViewModels
             Articulos = await ServicesArticulo.GetArticulos();
         }
 
-        public async Task IrAGestionarPedido(Articulo articulo)
+        public async Task IrAGestionarPedido(ArticuloModel articulo)
         {
-            string route = $"/GestionPedidosPage?IdArticulo={articulo}";
+            string route = $"/GestionPedidosPage?IdArticulo={articulo.Id}";
             await Shell.Current.GoToAsync(route);
         }
     }

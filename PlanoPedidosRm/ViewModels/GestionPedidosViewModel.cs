@@ -5,40 +5,41 @@ using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using PlanoPedidosRm.Models;
+using PlanoPedidosRm.Services;
 using Xamarin.Forms;
 
 
 namespace PlanoPedidosRm.ViewModels
 {
-    [QueryProperty(nameof(Articulo), nameof(Articulo))]
+    [QueryProperty(nameof(IdArticulo), nameof(IdArticulo))]
     public class GestionPedidosViewModel : BaseViewModel
     {
+        //---------------COMANDOS-------------------------
         public AsyncCommand IrArticulosCommand { get; set; }
+        public AsyncCommand AddArtiToTempCommand { get; set; }
 
-        Articulo _articulo;
+        //----------------------VARIABLES-------------------
+        ArticuloModel _articuloSeleccionado;
         string _nombreArticulo;
-        public string _idArticulo;
+        string _idArticulo;
+        bool _isVisibleBtnAdd;
+        bool _isVisibleBtnIr;
+        ObservableRangeCollection<ArticuloModel> _articulos;
 
+        //-----------------CONSTRUCTOR----------------------------
         public GestionPedidosViewModel() 
         {
             IrArticulosCommand = new AsyncCommand(irArticulos);
-            if (Articulo != null)
-            {
-                NombreArticulo = Articulo.Nombre;
-            }
-            
+            IsVisibleBtnIr = true;
+            IsVisibleBtnAdd = false;
         }
 
-        
 
-        public Articulo Articulo
+        //-------------------OBJETOS---------------------
+        public ArticuloModel ArticuloSeleccionado
         {
-            get => _articulo;
-            set 
-            {
-                
-                OnPropertyChanged();
-            }
+            get => _articuloSeleccionado;
+            set => SetProperty(ref _articuloSeleccionado, value);
         }
 
         public string NombreArticulo
@@ -51,15 +52,49 @@ namespace PlanoPedidosRm.ViewModels
         {
             get => _idArticulo;
             set 
-            { 
-                _idArticulo = Uri.UnescapeDataString(value ?? string.Empty);
-                OnPropertyChanged();
+            {
+                if (value != null)
+                {
+                    IsVisibleBtnIr = false;
+                    IsVisibleBtnAdd = true;
+                    _ = identificarArticulo(value);
+                }
+                SetProperty(ref _idArticulo, value);
             }
         }
 
+        public bool IsVisibleBtnAdd
+        {
+            get => _isVisibleBtnAdd;
+            set => SetProperty(ref _isVisibleBtnAdd, value);
+        }
+        public bool IsVisibleBtnIr
+        {
+            get => _isVisibleBtnIr;
+            set => SetProperty(ref _isVisibleBtnIr, value);
+        }
+
+        public ObservableRangeCollection<ArticuloModel> Articulos
+        {
+            get => _articulos;
+            set => SetProperty(ref _articulos, value);
+        }
+
+        //---------------METODOS------------------
         async Task irArticulos()
         {
             await Shell.Current.GoToAsync("/ArticulosPage");
         }
+
+        async Task identificarArticulo(string id)
+        {
+            ArticuloSeleccionado = await ServicesArticulo.GetArticulo(id);
+        }
+
+        async Task AddArtiToTemp()
+        {
+
+        }
+
     }
 }
